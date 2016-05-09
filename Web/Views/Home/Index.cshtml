@@ -1,0 +1,28 @@
+﻿@model Web.Models.Home.IndexModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @Model.NomeCompleto
+    </div>
+    
+    <div class="panel-body">        
+        @Html.ActionLink("Link", "action", null, new { @class = "btn btn-default" })
+
+        @using (Html.BeginForm("action", "controller/Home", FormMethod.Post, new {  }))
+        {
+            <h1>Painel de Informações</h1>
+            <input type="submit" class="btn btn-primary" value="Ok" />
+        }
+    </div>
+
+</div>
+
+@section scripts {
+    <script>
+        new Home.Index('@Model.Nome');
+    </script>
+}
