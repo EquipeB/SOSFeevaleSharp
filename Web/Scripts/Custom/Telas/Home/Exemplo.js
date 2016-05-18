@@ -6,10 +6,10 @@ var Exemplo = (function () {
     Exemplo.prototype.test = function () {
     };
     return Exemplo;
-}());
+})();
 var Item = (function () {
     function Item() {
     }
     return Item;
-}());
+})();
 //# sourceMappingURL=Exemplo.js.map
