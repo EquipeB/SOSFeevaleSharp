@@ -22,6 +22,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -203,6 +204,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Exemplo.ts" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Index.ts" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
