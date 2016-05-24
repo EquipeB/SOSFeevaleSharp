@@ -125,6 +125,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,6 +207,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Contato\index.cshtml" />
+    <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\Shared\Header.cshtml" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Exemplo.ts" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Index.ts" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
