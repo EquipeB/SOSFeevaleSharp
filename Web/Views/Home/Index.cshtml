@@ -10,13 +10,23 @@
     </div>
     
     <div class="panel-body">        
-        @Html.ActionLink("Link", "action", null, new { @class = "btn btn-default" })
-
-        @using (Html.BeginForm("action", "controller/Home", FormMethod.Post, new {  }))
+        @if (Request.IsAuthenticated)
         {
-            <h1>Painel de Informações</h1>
-            <input type="submit" class="btn btn-primary" value="Ok" />
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <span>Usuário <strong>@User.Identity.Name</strong> logado</span>
+                <br />
+                <a class="btn btn-default" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            }
         }
+        else
+        {
+            @Html.ActionLink("Logar", "Login", "Account", null, new { @class = "btn btn-default" });
+            @Html.ActionLink("Registrar", "Register", "Account", null, new { @class = "btn btn-default" });
+        }
+
     </div>
 
 </div>
