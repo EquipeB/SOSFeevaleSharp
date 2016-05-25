@@ -6,13 +6,18 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/css")
-    
+
 </head>
 <body>
+    @{
+        Html.RenderPartial("Header");
+    }
     <div class="container">
         @RenderBody()
     </div>
-
+    @{
+        Html.RenderPartial("Footer");
+    }
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
