@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Database.Models.Perfil>
+
+@{
+    ViewBag.Title = "Perfils";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Perfils</strong>
+        <div class="pull-right">
+            <a href="@Url.Action("Criar")" class="btn btn-default btn-xs">
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="panel-body">
+        <table class="table">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descricao)
+                        </td>
+                        <td>
+                            <div class="btn-group pull-right">
+                                @Html.ActionLink("Editar", "Editar", new { id = item.IdPerfil }, new { @class = "btn btn-default btn-sm" })
+                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        @Html.ActionLink("Info", "Detalhe", new { id = item.IdPerfil })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Deletar", "Deletar", new { id = item.IdPerfil })
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+

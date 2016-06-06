@@ -10,11 +10,15 @@ namespace Database.Models
 {
     public class Produto
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProduto { get; set; }
 
+        [Required]
+        [StringLength(100)]
         public string Nome { get; set; }
 
+        [StringLength(200)]
         public string Descricao { get; set; }
 
         [DataType(DataType.Currency)]
@@ -23,6 +27,7 @@ namespace Database.Models
 
         public string Foto { get; set; }
 
+        [Required]
         public bool Ativo { get; set; }
 
         public virtual TipoProduto TipoProduto { get; set; }

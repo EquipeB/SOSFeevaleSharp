@@ -10,10 +10,12 @@ namespace Database.Models
 {
     public class Perfil
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdPerfil { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Descricao { get; set; }
 
         public virtual ICollection<Usuario> Usuarios { get; set; }

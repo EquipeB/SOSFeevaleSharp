@@ -7,6 +7,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.DataProtection;
 using Owin;
 using Web.Models;
+using Database;
+using Database.Models;
 
 namespace Web
 {
@@ -16,7 +18,7 @@ namespace Web
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the UserManager
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(SOSFeevaleContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 
             // Enable the application to use a cookie to store information for the signed in user
@@ -26,9 +28,14 @@ namespace Web
                 LoginPath = new PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider
                 {
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
+                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, Usuario>(
                         validateInterval: TimeSpan.FromMinutes(20),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                        regenerateIdentity: async (manager, user) =>
+                        {
+                            var userIdentity = await manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                            // Add custom user claims here
+                            return userIdentity;
+                        })
                 }
             });
             // Use a cookie to temporarily store information about a user logging in with a third party login provider

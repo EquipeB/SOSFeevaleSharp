@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 using System.Web;
 using Web.Models;
 using Microsoft.AspNet.Identity.Owin;
+using Database.Models;
+using Database;
 
 namespace Web.Controllers
 {
     public partial class Controller : System.Web.Mvc.Controller
     {
+        protected SOSFeevaleContext db = new SOSFeevaleContext();
         private ApplicationUserManager _userManager;
 
         public Controller()
@@ -37,10 +40,15 @@ namespace Web.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && UserManager != null)
+            if (disposing)
             {
-                UserManager.Dispose();
-                UserManager = null;
+                db.Dispose();
+
+                if (UserManager != null)
+                {
+                    UserManager.Dispose();
+                    UserManager = null;
+                }
             }
             base.Dispose(disposing);
         }
@@ -53,10 +61,11 @@ namespace Web.Controllers
             }
         }
 
-        protected async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        protected async Task SignInAsync(Usuario user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
+            var userIdentity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, userIdentity);
         }
 
         protected void AddErrors(IdentityResult result)

@@ -16,7 +16,7 @@ namespace Web.Controllers
         {
             return View(new IndexModel()
             {
-                Nome = "SOS FEEVALE",                
+                Nome = "SOS FEEVALE",
             });
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,12 @@ namespace Database.Models
 {
     public class TipoProduto
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdTipoProduto { get; set; }
 
+        [Required]
+        [StringLength(200)]
         public string Descricao { get; set; }
 
         public virtual ICollection<Produto> Produtos { get; set; }

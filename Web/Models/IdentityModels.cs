@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Database;
+using Database.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -14,64 +16,12 @@ using System.Web;
 
 namespace Web.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
-    {
-        public ApplicationUser()
-            : base()
-        {
-            PreviousUserPasswords = new List<PreviousPassword>();
-        }
-
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
-            return userIdentity;
-        }
-        public virtual IList<PreviousPassword> PreviousUserPasswords { get; set; }
-
-    }
-
-    public class PreviousPassword
-    {
-        public PreviousPassword()
-        {
-            CreateDate = DateTimeOffset.Now;
-        }
-
-        [Key, Column(Order = 0)]
-        public string PasswordHash { get; set; }
-
-        public DateTimeOffset CreateDate { get; set; }
-
-        [Key, Column(Order = 1)]
-        public string UserId { get; set; }
-
-        public virtual ApplicationUser User { get; set; }
-
-    }
-
-
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection")
-        {
-        }
-
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-    }
-
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    
+    public class ApplicationUserManager : UserManager<Usuario>
     {
         private readonly int PASSWORD_HISTORY_LIMIT = 5;
 
-        public ApplicationUserManager(IUserStore<ApplicationUser> store)
+        public ApplicationUserManager(IUserStore<Usuario> store)
             : base(store)
         {
         }
@@ -79,9 +29,9 @@ namespace Web.Models
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
            IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new ApplicationUserStore(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new ApplicationUserStore(context.Get<SOSFeevaleContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+            manager.UserValidator = new UserValidator<Usuario>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -104,7 +54,7 @@ namespace Web.Models
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider =
-                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                    new DataProtectorTokenProvider<Usuario>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
@@ -155,21 +105,21 @@ namespace Web.Models
         }
     }
 
-    public class ApplicationUserStore : UserStore<ApplicationUser>
+    public class ApplicationUserStore : UserStore<Usuario>
     {
         public ApplicationUserStore(DbContext context)
             : base(context)
         {
         }
 
-        public override async Task CreateAsync(ApplicationUser user)
+        public override async Task CreateAsync(Usuario user)
         {
             await base.CreateAsync(user);
 
             await AddToPreviousPasswordsAsync(user, user.PasswordHash);
         }
 
-        public Task AddToPreviousPasswordsAsync(ApplicationUser user, string password)
+        public Task AddToPreviousPasswordsAsync(Usuario user, string password)
         {
             user.PreviousUserPasswords.Add(new PreviousPassword() { UserId = user.Id, PasswordHash = password });
             return UpdateAsync(user);
