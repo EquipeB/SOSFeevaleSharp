@@ -58,23 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201606052239125_Initial.cs" />
-    <Compile Include="Migrations\201606052239125_Initial.Designer.cs">
-      <DependentUpon>201606052239125_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606060002554_Roles.cs" />
-    <Compile Include="Migrations\201606060002554_Roles.Designer.cs">
-      <DependentUpon>201606060002554_Roles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606060029261_User_Correcao.cs" />
-    <Compile Include="Migrations\201606060029261_User_Correcao.Designer.cs">
-      <DependentUpon>201606060029261_User_Correcao.cs</DependentUpon>
+    <Compile Include="Migrations\201606062306067_Initial.cs" />
+    <Compile Include="Migrations\201606062306067_Initial.Designer.cs">
+      <DependentUpon>201606062306067_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Estabelecimento.cs" />
     <Compile Include="Models\EstabelecimentoComentario.cs" />
     <Compile Include="Models\EstabelecimentoVoto.cs" />
-    <Compile Include="Models\Perfil.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\ProdutoComentario.cs" />
     <Compile Include="Models\ProdutoVoto.cs" />
@@ -89,14 +80,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606052239125_Initial.resx">
-      <DependentUpon>201606052239125_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606060002554_Roles.resx">
-      <DependentUpon>201606060002554_Roles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606060029261_User_Correcao.resx">
-      <DependentUpon>201606060029261_User_Correcao.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606062306067_Initial.resx">
+      <DependentUpon>201606062306067_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

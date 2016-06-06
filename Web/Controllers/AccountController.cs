@@ -15,13 +15,6 @@ namespace Web.Controllers
 {
     public class AccountController : Controller
     {
-        public Perfil PerfilUsuario
-        {
-            get
-            {
-                return db.Perfil.Single(p => p.Descricao == "User");
-            }
-        }
 
         //
         // GET: /Account/
@@ -53,9 +46,6 @@ namespace Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    db.Users.Find(user.Id).Perfil = PerfilUsuario;
-                    db.SaveChanges();
-
                     await UserManager.AddToRoleAsync(user.Id, "User");
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");

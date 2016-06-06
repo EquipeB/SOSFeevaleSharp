@@ -34,13 +34,11 @@ namespace Database.Migrations
             if (!context.Users.Any(u => u.UserName == "admin"))
             {
                 CriarRolesPerfils(context);
-                var perfil = context.Perfil.Single(x => x.Descricao == "Admin");
                 var store = new UserStore<Usuario>(context);
                 var manager = new UserManager<Usuario>(store);
                 var user = new Usuario
                 {
-                    UserName = "admin",
-                    Perfil = perfil
+                    UserName = "admin"
                 };
 
                 manager.Create(user, "adm123");
@@ -62,13 +60,8 @@ namespace Database.Migrations
                 var store = new RoleStore<IdentityRole>(context);
                 var manager = new RoleManager<IdentityRole>(store);
                 var role = new IdentityRole { Name = nome };
-                var perfil = new Perfil() { Descricao = nome };
 
                 manager.Create(role);
-                context.Perfil.AddOrUpdate(
-                    p => p.IdPerfil,
-                    perfil
-                );
             }
 
             context.SaveChanges();

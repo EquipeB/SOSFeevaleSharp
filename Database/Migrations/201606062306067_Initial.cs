@@ -55,6 +55,7 @@ namespace Database.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        Foto = c.String(),
                         Email = c.String(),
                         EmailConfirmed = c.Boolean(nullable: false),
                         Senha = c.String(),
@@ -64,14 +65,24 @@ namespace Database.Migrations
                         TwoFactorEnabled = c.Boolean(nullable: false),
                         LockoutEndDateUtc = c.DateTime(),
                         LockoutEnabled = c.Boolean(nullable: false),
+                        AccessFailedCount = c.Int(nullable: false),
                         Usuario = c.String(),
-                        Foto = c.String(),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
-                        Perfil_IdPerfil = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.UsuarioClaim",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.String(),
+                        ClaimType = c.String(),
+                        ClaimValue = c.String(),
+                        Usuario_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Perfil", t => t.Perfil_IdPerfil)
-                .Index(t => t.Perfil_IdPerfil);
+                .ForeignKey("dbo.Usuario", t => t.Usuario_Id)
+                .Index(t => t.Usuario_Id);
             
             CreateTable(
                 "dbo.EstabelecimentoComentario",
@@ -104,13 +115,17 @@ namespace Database.Migrations
                 .Index(t => t.Usuario_Id);
             
             CreateTable(
-                "dbo.Perfil",
+                "dbo.UsuarioLogin",
                 c => new
                     {
-                        IdPerfil = c.Int(nullable: false, identity: true),
-                        Descricao = c.String(nullable: false, maxLength: 50),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        LoginProvider = c.String(),
+                        ProviderKey = c.String(),
+                        Usuario_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.IdPerfil);
+                .PrimaryKey(t => t.UserId)
+                .ForeignKey("dbo.Usuario", t => t.Usuario_Id)
+                .Index(t => t.Usuario_Id);
             
             CreateTable(
                 "dbo.PreviousPassword",
@@ -140,6 +155,21 @@ namespace Database.Migrations
                 .Index(t => t.Usuario_Id);
             
             CreateTable(
+                "dbo.UsuarioPerfil",
+                c => new
+                    {
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        Usuario_Id = c.String(maxLength: 128),
+                        IdentityRole_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.RoleId, t.UserId })
+                .ForeignKey("dbo.Usuario", t => t.Usuario_Id)
+                .ForeignKey("dbo.Perfil", t => t.IdentityRole_Id)
+                .Index(t => t.Usuario_Id)
+                .Index(t => t.IdentityRole_Id);
+            
+            CreateTable(
                 "dbo.Promocao",
                 c => new
                     {
@@ -167,6 +197,15 @@ namespace Database.Migrations
                 .PrimaryKey(t => t.IdTipoProduto);
             
             CreateTable(
+                "dbo.Perfil",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Estabelecimento_Produto",
                 c => new
                     {
@@ -183,44 +222,53 @@ namespace Database.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.UsuarioPerfil", "IdentityRole_Id", "dbo.Perfil");
             DropForeignKey("dbo.Estabelecimento_Produto", "IdEstabelecimento", "dbo.Produto");
             DropForeignKey("dbo.Estabelecimento_Produto", "IdProduto", "dbo.Estabelecimento");
             DropForeignKey("dbo.Produto", "TipoProduto_IdTipoProduto", "dbo.TipoProduto");
             DropForeignKey("dbo.Promocao", "Produto_IdProduto", "dbo.Produto");
             DropForeignKey("dbo.Promocao", "Estabelecimento_IdEstabelecimento", "dbo.Estabelecimento");
+            DropForeignKey("dbo.UsuarioPerfil", "Usuario_Id", "dbo.Usuario");
             DropForeignKey("dbo.ProdutoVoto", "Usuario_Id", "dbo.Usuario");
             DropForeignKey("dbo.ProdutoVoto", "Produto_IdProduto", "dbo.Produto");
             DropForeignKey("dbo.ProdutoComentario", "Usuario_Id", "dbo.Usuario");
             DropForeignKey("dbo.PreviousPassword", "UserId", "dbo.Usuario");
-            DropForeignKey("dbo.Usuario", "Perfil_IdPerfil", "dbo.Perfil");
+            DropForeignKey("dbo.UsuarioLogin", "Usuario_Id", "dbo.Usuario");
             DropForeignKey("dbo.EstabelecimentoVoto", "Usuario_Id", "dbo.Usuario");
             DropForeignKey("dbo.EstabelecimentoVoto", "Estabelecimento_IdEstabelecimento", "dbo.Estabelecimento");
             DropForeignKey("dbo.EstabelecimentoComentario", "Usuaio_Id", "dbo.Usuario");
             DropForeignKey("dbo.EstabelecimentoComentario", "Estabelecimento_IdEstabelecimento", "dbo.Estabelecimento");
+            DropForeignKey("dbo.UsuarioClaim", "Usuario_Id", "dbo.Usuario");
             DropForeignKey("dbo.ProdutoComentario", "Produto_IdProduto", "dbo.Produto");
             DropIndex("dbo.Estabelecimento_Produto", new[] { "IdEstabelecimento" });
             DropIndex("dbo.Estabelecimento_Produto", new[] { "IdProduto" });
             DropIndex("dbo.Promocao", new[] { "Produto_IdProduto" });
             DropIndex("dbo.Promocao", new[] { "Estabelecimento_IdEstabelecimento" });
+            DropIndex("dbo.UsuarioPerfil", new[] { "IdentityRole_Id" });
+            DropIndex("dbo.UsuarioPerfil", new[] { "Usuario_Id" });
             DropIndex("dbo.ProdutoVoto", new[] { "Usuario_Id" });
             DropIndex("dbo.ProdutoVoto", new[] { "Produto_IdProduto" });
             DropIndex("dbo.PreviousPassword", new[] { "UserId" });
+            DropIndex("dbo.UsuarioLogin", new[] { "Usuario_Id" });
             DropIndex("dbo.EstabelecimentoVoto", new[] { "Usuario_Id" });
             DropIndex("dbo.EstabelecimentoVoto", new[] { "Estabelecimento_IdEstabelecimento" });
             DropIndex("dbo.EstabelecimentoComentario", new[] { "Usuaio_Id" });
             DropIndex("dbo.EstabelecimentoComentario", new[] { "Estabelecimento_IdEstabelecimento" });
-            DropIndex("dbo.Usuario", new[] { "Perfil_IdPerfil" });
+            DropIndex("dbo.UsuarioClaim", new[] { "Usuario_Id" });
             DropIndex("dbo.ProdutoComentario", new[] { "Usuario_Id" });
             DropIndex("dbo.ProdutoComentario", new[] { "Produto_IdProduto" });
             DropIndex("dbo.Produto", new[] { "TipoProduto_IdTipoProduto" });
             DropTable("dbo.Estabelecimento_Produto");
+            DropTable("dbo.Perfil");
             DropTable("dbo.TipoProduto");
             DropTable("dbo.Promocao");
+            DropTable("dbo.UsuarioPerfil");
             DropTable("dbo.ProdutoVoto");
             DropTable("dbo.PreviousPassword");
-            DropTable("dbo.Perfil");
+            DropTable("dbo.UsuarioLogin");
             DropTable("dbo.EstabelecimentoVoto");
             DropTable("dbo.EstabelecimentoComentario");
+            DropTable("dbo.UsuarioClaim");
             DropTable("dbo.Usuario");
             DropTable("dbo.ProdutoComentario");
             DropTable("dbo.Produto");

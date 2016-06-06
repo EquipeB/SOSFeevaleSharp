@@ -22,8 +22,7 @@ namespace Database
         {
             return new SOSFeevaleContext();
         }
-
-        public DbSet<Perfil> Perfil { get; set; }
+        
         public DbSet<Estabelecimento> Estabelecimento { get; set; }
         public DbSet<EstabelecimentoComentario> EstabelecimentoComentario { get; set; }
         public DbSet<EstabelecimentoVoto> EstabelecimentoVoto { get; set; }
@@ -47,6 +46,18 @@ namespace Database
 
             modelBuilder.Entity<Usuario>()
                 .ToTable("Usuario", "dbo").Property(p => p.Email).HasColumnName("Email");
+
+            modelBuilder.Entity<IdentityRole>()
+                .ToTable("Perfil");
+
+            modelBuilder.Entity<IdentityUserRole>()
+                .ToTable("UsuarioPerfil");
+
+            modelBuilder.Entity<IdentityUserClaim>()
+                .ToTable("UsuarioClaim");
+
+            modelBuilder.Entity<IdentityUserLogin>()
+                .ToTable("UsuarioLogin");
 
             //modelBuilder.Entity<IdentityUser>()
             //    .ToTable("Usuario", "dbo").Ignore(p => p.AccessFailedCount);
@@ -73,6 +84,7 @@ namespace Database
             modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
             modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
             modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+            modelBuilder.Entity<IdentityUserClaim>().HasKey(r => new { r.Id });
             //modelBuilder.Ignore<IdentityUserLogin>();
             //modelBuilder.Ignore<IdentityUserRole>();
             //modelBuilder.Ignore<IdentityRole>();

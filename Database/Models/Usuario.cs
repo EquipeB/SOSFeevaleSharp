@@ -28,9 +28,7 @@ namespace Database.Models
         //}
 
         public string Foto { get; set; }
-
-        public virtual Perfil Perfil { get; set; }
-
+        
         public virtual ICollection<EstabelecimentoVoto> EstabelecimentoVotos { get; set; }
 
         public virtual ICollection<EstabelecimentoComentario> EstabelecimentoComentarios { get; set; }
