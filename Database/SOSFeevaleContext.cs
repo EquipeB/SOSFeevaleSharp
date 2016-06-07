@@ -14,7 +14,7 @@ namespace Database
     public class SOSFeevaleContext : IdentityDbContext<Usuario>
     {
         public SOSFeevaleContext()
-            : base("NolletoConnection")
+            : base("DefaultConnection")
         {
         }
 
