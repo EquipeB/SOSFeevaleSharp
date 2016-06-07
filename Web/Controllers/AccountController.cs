@@ -21,7 +21,7 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Login");
         }
 
         // GET: /Account/Register
