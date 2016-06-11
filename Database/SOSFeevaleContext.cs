@@ -89,15 +89,6 @@ namespace Database
             //modelBuilder.Ignore<IdentityUserRole>();
             //modelBuilder.Ignore<IdentityRole>();
             //modelBuilder.Ignore<IdentityUserClaim>();
-
-            modelBuilder.Entity<Estabelecimento>()
-                .HasMany(e => e.Produtos)
-                .WithMany(p => p.Estabelecimentos)
-                .Map(m => 
-                    m.MapLeftKey("IdProduto")
-                    .MapRightKey("IdEstabelecimento")
-                    .ToTable("Estabelecimento_Produto")
-                );
         }
     }
 }
