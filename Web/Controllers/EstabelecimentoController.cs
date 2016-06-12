@@ -27,6 +27,7 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Produtos = estabelecimento.Produtos;
             return View(estabelecimento);
         }
     }

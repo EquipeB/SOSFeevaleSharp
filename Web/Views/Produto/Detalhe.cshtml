@@ -1,0 +1,38 @@
+﻿@model Database.Models.Produto
+
+@{
+    ViewBag.Title = "Detalhe";
+}
+
+<h2>Detalhe</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>@Model.Nome</h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-8">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Descricao)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Descricao)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Preco)
+                    </dt>
+
+                    <dd>
+                        @string.Format("{0:C}", Model.Preco)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                @Html.Image(Model.Foto)
+            </div>
+        </div>
+    </div>
+</div>

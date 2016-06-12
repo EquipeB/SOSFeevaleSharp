@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Database.Models.Produto>
+﻿@model Web.Models.Produto.IndexModelView
 
 @{
     ViewBag.Title = "Index";
@@ -6,17 +6,26 @@
 
 <h2>Produtos</h2>
 
+@using (Html.BeginForm("Index", "Produto", FormMethod.Post, new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Pesquisa)
+        @Html.TextBoxFor(model => model.Pesquisa, new { @class = "form-control" })
+    </div>
+}
+
 <div class="row">
-    @for (int i = 0; i < Model.Count(); i++)
+    @for (int i = 0; i < Model.Produtos.Count(); i++)
     {
-        var produto = Model.ElementAt(i);
+        var produto = Model.Produtos.ElementAt(i);
 
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="thumbnail">
-                <img src="" alt="">
+                @Html.Image(produto.Foto)
                 <div class="caption">
                     <h3>@produto.Nome</h3>
                     <p>@produto.Descricao</p>
+                    <p>@string.Format("{0:C}", produto.Preco)</p>
                     <p>
                         @Html.ActionLink("Abrir", "Detalhe", new { id = produto.IdProduto }, new { @class = "btn btn-primary" })
                     </p>
@@ -35,6 +44,6 @@
                 <div class="clearfix visible-md-block"></div>
             }
             <div class="clearfix visible-sm-block"></div>
+            }
         }
-    }
 </div>
