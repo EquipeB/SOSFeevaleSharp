@@ -8,17 +8,20 @@ using Owin;
 using Web.Models;
 using Web.Models.Account;
 using System.Net;
+using Database.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Web.Controllers
 {
     public class AccountController : Controller
     {
+
         //
         // GET: /Account/
 
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Login");
         }
 
         // GET: /Account/Register
@@ -35,7 +38,7 @@ namespace Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser()
+                var user = new Usuario()
                 {
                     UserName = model.UserName,
                     Email = model.Email
@@ -43,6 +46,7 @@ namespace Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, "User");
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

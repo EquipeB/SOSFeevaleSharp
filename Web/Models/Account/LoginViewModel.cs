@@ -9,13 +9,16 @@ namespace Web.Models.Account
     public class LoginViewModel
     {
         [Required]
+        [Display(Name = "Usuário")]
         public string UserName { get; set; }
         
         [Required]
+        [Display(Name ="Senha")]
         [StringLength(100, MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Display(Name = "Manter conectado")]
         public bool RememberMe { get; set; }
     }
 }

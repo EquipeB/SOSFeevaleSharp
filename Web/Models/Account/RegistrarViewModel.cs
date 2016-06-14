@@ -9,6 +9,7 @@ namespace Web.Models.Account
 	public class RegistrarViewModel
 	{
         [Required]
+        [Display(Name = "Usuário")]
         public string UserName { get; set; }
 
         [Required]
@@ -18,10 +19,11 @@ namespace Web.Models.Account
         [Required]
         [StringLength(100, MinimumLength = 6)]
         [DataType(DataType.Password)]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirmar senha")]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
     }

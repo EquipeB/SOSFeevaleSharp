@@ -13,7 +13,7 @@ var Home;
             var soma2 = function (a, b) { return a + b; };
         };
         return Index;
-    })();
+    }());
     Home.Index = Index;
 })(Home || (Home = {}));
 //# sourceMappingURL=Index.js.map
