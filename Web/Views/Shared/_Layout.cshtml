@@ -9,19 +9,157 @@
 
 </head>
 <body>
-    @{
+    @*@{
         Html.RenderPartial("Header");
-    }
+    }*@
+
+    <header id="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-4">
+                    </div>
+                    <div class="col-sm-6 col-xs-8">
+                        <div class="social">
+                            <div class="search">
+                                <form role="form">
+                                    <input type="text" class="search-form" autocomplete="off" placeholder="O que você procura?">
+                                    <i class="fa fa-search"></i>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.container-->
+        </div><!--/.top-bar-->
+        <nav class="navbar navbar-inverse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Home</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="services.html">Serviços</a></li>
+                        <li><a href="portfolio.html">Produtos</a></li>                        
+                        <li><a href="portfolio.html">Estabelecimentos</a></li>
+                        <li><a href="contact-us.html">Contato</a></li>
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+
+    </header><!--/header-->
+
     <div class="container">
         @RenderBody()
     </div>
-    @{
+    @*@{
         Html.RenderPartial("Footer");
-    }
+    }*@
+
+    <footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2016 SOSFEEVALE. Todos Direitos Reservados.
+                </div>
+                <div class="col-sm-6">
+                    <ul class="pull-right">
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/custom")
+    <script>
+        jQuery(function ($) {
+            'use strict',
+
+            //#main-slider
+        $(function () {
+            $('#main-slider.carousel').carousel({
+                interval: 8000
+            });
+        });
+
+
+            // accordian
+            $('.accordion-toggle').on('click', function () {
+                $(this).closest('.panel-group').children().each(function () {
+                    $(this).find('>.panel-heading').removeClass('active');
+                });
+
+                $(this).closest('.panel-heading').toggleClass('active');
+            });
+
+            //Initiat WOW JS
+            new WOW().init();
+
+            // portfolio filter
+            $(window).load(function () {
+                'use strict';
+                var $portfolio_selectors = $('.portfolio-filter >li>a');
+                var $portfolio = $('.portfolio-items');
+                $portfolio.isotope({
+                    itemSelector: '.portfolio-item',
+                    layoutMode: 'fitRows'
+                });
+
+                $portfolio_selectors.on('click', function () {
+                    $portfolio_selectors.removeClass('active');
+                    $(this).addClass('active');
+                    var selector = $(this).attr('data-filter');
+                    $portfolio.isotope({ filter: selector });
+                    return false;
+                });
+            });
+
+            // Contact form
+            var form = $('#main-contact-form');
+            form.submit(function (event) {
+                event.preventDefault();
+                var form_status = $('<div class="form_status"></div>');
+                $.ajax({
+                    url: $(this).attr('action'),
+
+                    beforeSend: function () {
+                        form.prepend(form_status.html('<p><i class="fa fa-spinner fa-spin"></i> Email is sending...</p>').fadeIn());
+                    }
+                }).done(function (data) {
+                    form_status.html('<p class="text-success">' + data.message + '</p>').delay(3000).fadeOut();
+                });
+            });
+
+
+            //goto top
+            $('.gototop').click(function (event) {
+                event.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $("body").offset().top
+                }, 500);
+            });
+
+            //Pretty Photo
+            $("a[rel^='prettyPhoto']").prettyPhoto({
+                social_tools: false
+            });
+        });
+    </script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

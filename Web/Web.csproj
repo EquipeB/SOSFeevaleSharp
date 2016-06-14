@@ -173,6 +173,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\EstabelecimentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -185,16 +186,16 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\app\app.css">
-      <DependentUpon>app.less</DependentUpon>
-    </Content>
-    <Content Include="Content\app\app.min.css">
-      <DependentUpon>app.css</DependentUpon>
-    </Content>
+    <Content Include="Content\app\site.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\temp\animate.min.css" />
+    <Content Include="Content\temp\font-awesome.css" />
+    <Content Include="Content\temp\main.css" />
+    <Content Include="Content\temp\prettyPhoto.css" />
+    <Content Include="Content\temp\responsive.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -259,6 +260,24 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Imgs\partners\boticario.jpg" />
+    <Content Include="Imgs\partners\dxd.jpg" />
+    <Content Include="Imgs\partners\panvel.png" />
+    <Content Include="Imgs\partners\subway.png" />
+    <Content Include="Imgs\recent\cafe.jpg" />
+    <Content Include="Imgs\recent\dog.jpg" />
+    <Content Include="Imgs\recent\paracetamol.jpg" />
+    <Content Include="Imgs\recent\suco.png" />
+    <Content Include="Imgs\slider\boticario%282%29.jpg" />
+    <Content Include="Imgs\slider\boticario.jpg" />
+    <Content Include="Imgs\slider\dog_mania%282%29.jpg" />
+    <Content Include="Imgs\slider\dog_mania.jpg" />
+    <Content Include="Imgs\slider\dxd%282%29.jpg" />
+    <Content Include="Imgs\slider\dxd.jpg" />
+    <Content Include="Imgs\slider\panvel%282%29.jpg" />
+    <Content Include="Imgs\slider\panvel.jpg" />
+    <Content Include="Imgs\slider\subway%282%29.jpg" />
+    <Content Include="Imgs\slider\subway.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Views\Account\Registrar.cshtml" />
@@ -273,6 +292,7 @@
     <Content Include="Views\Perfils\Detalhe.cshtml" />
     <Content Include="Views\Perfils\Editar.cshtml" />
     <Content Include="Views\Perfils\Index.cshtml" />
+    <Content Include="Views\Estabelecimento\Index.cshtml" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Exemplo.ts" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Index.ts" />
     <Compile Include="App_Start\Startup.Auth.cs" />

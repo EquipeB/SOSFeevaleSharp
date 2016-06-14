@@ -1,28 +1,193 @@
 ﻿@model Web.Models.Home.IndexModel
 
-@{
-    ViewBag.Title = "SOS-FEEVALE";
-}
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        @Model.NomeCompleto
-    </div>
-    
-    <div class="panel-body">        
-        @Html.ActionLink("Link", "action", null, new { @class = "btn btn-default" })
+<section id="main-slider" class="no-margin">
+    <div class="carousel slide">
+        <ol class="carousel-indicators">
+            <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+            <li data-target="#main-slider" data-slide-to="1"></li>
+            <li data-target="#main-slider" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
 
-        @using (Html.BeginForm("action", "controller/Home", FormMethod.Post, new {  }))
-        {
-            <h1>Painel de Informações</h1>
-            <input type="submit" class="btn btn-primary" value="Ok" />
-        }
-    </div>
+            <div class="item active" style="background-image: url(~/Imgs/slider/subway.jpg)">
+                <div class="container">
+                    <div class="row slide-margin">
+                        <div class="col-sm-6">
+                            <div class="carousel-content">
+                                <h1 class="animation animated-item-1">Barato do dia</h1>
+                                <h2 class="animation animated-item-2">Opções mais baratas conforme o dia da semana.</h2>
+                                <a class="btn-slide animation animated-item-3" href="#">Acesse Aqui</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 hidden-xs animation animated-item-4">
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.item-->
 
-</div>
+            <div class="item active" style="background-image: url(~/Imgs/slider/dog_mania.jpg)">
+                <div class="container">
+                    <div class="row slide-margin">
+                        <div class="col-sm-6">
+                            <div class="carousel-content">
+                                <h1 class="animation animated-item-1">Promoções</h1>
+                                <h2 class="animation animated-item-2">Encontre promoções da Dog Mania</h2>
+                                <a class="btn-slide animation animated-item-3" href="#">Acesse aqui</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div><!--/.item-->
+
+
+            <div class="item" style="background-image: url(~/Imgs/slider/boticario.jpg)">
+                <div class="container">
+                    <div class="row slide-margin">
+                        <div class="col-sm-6">
+                            <div class="carousel-content">
+                                <a class="btn-slide animation animated-item-3" href="#">Acesse Aqui</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 hidden-xs animation animated-item-4">
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.item-->
+
+        </div><!--/.carousel-inner-->
+    </div><!--/.carousel-->
+    <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+        <i class="fa fa-chevron-left"></i>
+    </a>
+    <a class="next hidden-xs" href="#main-slider" data-slide="next">
+        <i class="fa fa-chevron-right"></i>
+    </a>
+</section><!--/#main-slider-->
+<section id="recent-works">
+    <div class="container">
+        <div class="center wow fadeInDown">
+            <h2>Últimos produtos e serviços cadastrados</h2>
+            <p class="lead">Abaixo segue a lista dos últimos produtos e serviços cadastrados</p>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="recent-work-wrap">
+                    <img class="img-responsive" src="~/Imgs/recent/cafe.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="recent-work-wrap">
+                    <img class="img-responsive" src="~/Imgs/recent/dog.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="recent-work-wrap">
+                    <img class="img-responsive" src="~/Imgs/recent/paracetamol.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="recent-work-wrap">
+                    <img class="img-responsive" src="~/Imgs/recent/suco.png" alt="">
+                </div>
+            </div>
+
+        </div><!--/.row-->
+    </div><!--/.container-->
+</section><!--/#recent-works-->
+
+<section id="middle">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 wow fadeInDown">
+                <div class="skill">
+                    <h2>Avaliações Produtos e Serviços</h2>
+                    <p>Ranking da avaliação dos produtos</p>
+                    <div class="progress-wrap">
+                        <h3>Almoço Alimentare</h3>
+                        <div class="progress">
+                            <div class="progress-bar  color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+                                <span class="bar-width">85%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-wrap">
+                        <h3>Barato do dia Subway</h3>
+                        <div class="progress">
+                            <div class="progress-bar color2" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
+                                <span class="bar-width">95%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-wrap">
+                        <h3>Café Nona Eva</h3>
+                        <div class="progress">
+                            <div class="progress-bar color3" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                <span class="bar-width">80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-wrap">
+                        <h3>Suco do Quicker</h3>
+                        <div class="progress">
+                            <div class="progress-bar color4" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                <span class="bar-width">90%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.col-sm-6-->
+
+
+            <div class="col-sm-6 wow fadeInDown">
+                <div class="accordion">
+                    <h2>Avaliações Estabelecimentos</h2>
+                    <p>Ranking da avaliação dos estabelecimentos</p>
+                    <div class="progress-wrap">
+                        <h3>Panvel</h3>
+                        <div class="progress">
+                            <div class="progress-bar  color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 92%">
+                                <span class="bar-width">92%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-wrap">
+                        <h3>Subway</h3>
+                        <div class="progress">
+                            <div class="progress-bar color2" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                                <span class="bar-width">75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-wrap">
+                        <h3>Restaurante Alimentare</h3>
+                        <div class="progress">
+                            <div class="progress-bar color3" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 67.9%">
+                                <span class="bar-width">67,9%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-wrap">
+                        <h3>Suco do Quicker</h3>
+                        <div class="progress">
+                            <div class="progress-bar color4" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                <span class="bar-width">90%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.col-sm-6-->
+
+        </div><!--/.row-->
+    </div><!--/.container-->
+</section><!--/#middle-->
+
+
+
 
 @section scripts {
     <script>
-        new Home.Index('@Model.Nome');
+        @*new Home.Index('@Model.Nome');*@
     </script>
 }
