@@ -38,6 +38,7 @@ namespace Web.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.TipoProduto = produto.TipoProduto.Descricao;
             return View(produto);
         }
     }

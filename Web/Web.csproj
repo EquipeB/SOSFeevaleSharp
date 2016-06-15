@@ -177,7 +177,6 @@
     <Compile Include="Controllers\EstabelecimentoTesteController.cs" />
     <Compile Include="Controllers\EstabelecimentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ParceirosController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -307,9 +306,10 @@
     <Content Include="Views\EstabelecimentoTeste\Edit.cshtml" />
     <Content Include="Views\EstabelecimentoTeste\Index.cshtml" />
     <Content Include="Views\Produto\Detalhe.cshtml" />
-    <Content Include="Views\Parceiros\Index.cshtml" />
     <Content Include="Views\Servico\Index.cshtml" />
     <Content Include="Views\Contato\Index.cshtml" />
+    <Content Include="Views\Parceiro\Index.cshtml" />
+    <Content Include="Views\Servico\Detalhe.cshtml" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Exemplo.ts" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Index.ts" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -355,7 +355,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Produtos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

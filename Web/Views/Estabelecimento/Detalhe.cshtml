@@ -57,7 +57,7 @@
                         <p>@produto.Descricao</p>
                         <p>@string.Format("{0:C}", produto.Preco)</p>
                         <p>
-                            @Html.ActionLink("Abrir", "Detalhe", new { id = produto.IdProduto }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Abrir", "Detalhe", "Produto", new { id = produto.IdProduto }, new { @class = "btn btn-primary" })
                         </p>
                     </div>
                 </div>

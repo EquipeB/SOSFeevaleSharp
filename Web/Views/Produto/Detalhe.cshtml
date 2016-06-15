@@ -21,6 +21,14 @@
                     <dd>
                         @Html.DisplayFor(model => model.Descricao)
                     </dd>
+                    
+                    <dt>
+                        Tipo de Produto
+                    </dt>
+
+                    <dd>
+                        @ViewBag.TipoProduto
+                    </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.Preco)
                     </dt>
@@ -36,3 +44,25 @@
         </div>
     </div>
 </div>
+<div class="fb-comments" data-href="http://www.f5digital.noip.me/sos-feevale?produtoId=@Model.IdProduto" data-width="100%" data-numposts="5"></div>
+
+
+<div id="fb-root"></div>
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '149749735439080',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>

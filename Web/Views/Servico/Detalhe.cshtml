@@ -1,23 +1,27 @@
-﻿@model IEnumerable<Database.Models.TipoProduto>
+﻿@model Database.Models.TipoProduto
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Detalhe";
+    IEnumerable<Database.Models.Produto> produtos = ViewBag.Produtos;
 }
 
-<h2>Serviços</h2>
+
+<h2>@Model.Descricao</h2>
 
 <div class="row">
-    @for (int i = 0; i < Model.Count(); i++)
+    @for (int i = 0; i < produtos.Count(); i++)
     {
-        var tipo = Model.ElementAt(i);
+        var produto = produtos.ElementAt(i);
 
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="thumbnail">
-                <img src="" alt="">
+                @Html.Image(produto.Foto)
                 <div class="caption">
-                    <h3>@tipo.Descricao</h3>
+                    <h3>@produto.Nome</h3>
+                    <p>@produto.Descricao</p>
+                    <p>@string.Format("{0:C}", produto.Preco)</p>
                     <p>
-                        @Html.ActionLink("Abrir", "Detalhe", new { id = tipo.IdTipoProduto }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Abrir", "Detalhe", "Produto", new { id = produto.IdProduto }, new { @class = "btn btn-primary" })
                     </p>
                 </div>
             </div>
