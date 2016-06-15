@@ -32,7 +32,7 @@ namespace Database.Models
 
         public virtual TipoProduto TipoProduto { get; set; }
 
-        public virtual ICollection<Estabelecimento> Estabelecimentos { get; set; }
+        public virtual Estabelecimento Estabelecimento { get; set; }
 
         public virtual ICollection<Promocao> Promocoes { get; set; }
 

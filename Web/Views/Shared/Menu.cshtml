@@ -1,11 +1,24 @@
 ﻿
     <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li class="dropdown"><a href="#contact">Servicos</a></li>
-        <li class="dropdown"><a href="#contact">Estabelecimentos</a></li>
-        <li class="dropdown"><a href="#contact">Contato</a></li>
-        <li class="dropdown"><a href="#contact">Parceiros</a></li>
-        <li class="dropdown"><a href="#contact">Contato</a></li>
+        <li>
+            @Html.ActionLink("Estabelecimentos", "Index", "Estabelecimento")
+        </li>
+        <li>
+            @Html.ActionLink("Produtos", "Index", "Produto")
+        </li>
+        <li>
+            @Html.ActionLink("Servicos", "Index", "Servico")
+        </li>
+        <li>
+            @Html.ActionLink("Contato", "Index", "Contato")
+        </li>
+        <li>
+            @Html.ActionLink("Parceiros", "Index", "Parceiro")
+        </li>
+        <li>
+            @Html.ActionLink("Contato", "Index", "Contato")
+        </li>
     </ul>
 
 

@@ -172,9 +172,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\EstabelecimentoTesteController.cs" />
     <Compile Include="Controllers\EstabelecimentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ParceirosController.cs" />
+    <Compile Include="Controllers\ProdutoController.cs" />
+    <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,7 +187,9 @@
     <Compile Include="Models\Account\RegistrarViewModel.cs" />
     <Compile Include="Models\Home\IndexModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Produto\IndexModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Razor\Image.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -284,7 +291,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
-    <Content Include="Views\Contato\index.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Perfils\Criar.cshtml" />
@@ -292,7 +298,18 @@
     <Content Include="Views\Perfils\Detalhe.cshtml" />
     <Content Include="Views\Perfils\Editar.cshtml" />
     <Content Include="Views\Perfils\Index.cshtml" />
+    <Content Include="Views\Produto\Index.cshtml" />
     <Content Include="Views\Estabelecimento\Index.cshtml" />
+    <Content Include="Views\Estabelecimento\Detalhe.cshtml" />
+    <Content Include="Views\EstabelecimentoTeste\Create.cshtml" />
+    <Content Include="Views\EstabelecimentoTeste\Delete.cshtml" />
+    <Content Include="Views\EstabelecimentoTeste\Details.cshtml" />
+    <Content Include="Views\EstabelecimentoTeste\Edit.cshtml" />
+    <Content Include="Views\EstabelecimentoTeste\Index.cshtml" />
+    <Content Include="Views\Produto\Detalhe.cshtml" />
+    <Content Include="Views\Parceiros\Index.cshtml" />
+    <Content Include="Views\Servico\Index.cshtml" />
+    <Content Include="Views\Contato\Index.cshtml" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Exemplo.ts" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Index.ts" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -338,6 +355,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Produtos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
