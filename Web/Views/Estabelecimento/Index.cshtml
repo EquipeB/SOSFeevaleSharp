@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Database.Models.Estabelecimento>
+﻿@model Web.Models.Estabelecimento.IndexModelView
 
 @{
     ViewBag.Title = "Index";
@@ -6,10 +6,27 @@
 
 <h2>Estabelecimentos</h2>
 
+<div class="panel panel-default">
+    <div class="panel-body">
+        @using (Html.BeginForm("Index", "Estabelecimento", FormMethod.Post, new { @class = "form-inline" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pesquisa)
+                @Html.TextBoxFor(model => model.Pesquisa, new { @class = "form-control" })
+            </div>
+            <a class="btn btn-default pull-right" href="@Url.Action("Registrar")">
+                Adicionar
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        }
+    </div>
+
+</div>
+
 <div class="row">
-    @for (int i = 0; i < Model.Count(); i++)
+    @for (int i = 0; i < Model.Estabelecimentos.Count(); i++)
     {
-        var estabelecimento = Model.ElementAt(i);
+        var estabelecimento = Model.Estabelecimentos.ElementAt(i);
 
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="thumbnail">

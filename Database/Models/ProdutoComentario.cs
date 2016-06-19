@@ -16,10 +16,17 @@ namespace Database.Models
 
         [Required]
         [StringLength(4000)]
+        [Display(Name = "Comentário")]
         public string Comentario { get; set; }
 
-        public virtual Usuario Usuario { get; set; }
+        [Display(Name = "Usuário")]
+        public string IdUsuario { get; set; }
 
+        [Display(Name = "Produto")]
+        public int IdProduto { get; set; }
+
+        public virtual Usuario Usuario { get; set; }
+        
         public virtual Produto Produto { get; set; }
     }
 }

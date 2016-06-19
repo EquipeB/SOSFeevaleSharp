@@ -1,4 +1,27 @@
-﻿.login {
+﻿header .top-bar .container .login a {
+  margin-left: 10px;
+}
+header .top-bar .container .login a:hover {
+  color: white;
+}
+header .top-bar .container .login a:focus {
+  color: white;
+}
+header .top-bar .container .login a:active {
+  color: white;
+}
+header nav .container .navbar-header img.navbar-brand {
+  width: auto;
+  height: auto;
+  margin-top: 10px;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+}
+.login {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 300;
@@ -85,6 +108,12 @@
 }
 .login .btn-link-google {
   background: #dd4b39;
+}
+body {
+  padding-bottom: 60px;
+}
+main {
+  padding-top: 10px;
 }
 img {
   max-width: 200px;

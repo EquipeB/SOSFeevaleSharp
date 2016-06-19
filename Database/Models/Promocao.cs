@@ -16,19 +16,28 @@ namespace Database.Models
 
         [DataType(DataType.Currency)]
         [Column(TypeName = "money")]
+        [Display(Name = "Preço")]
         public decimal Preco { get; set; }
 
         [Required]
+        [Display(Name = "Data de Início")]
         public DateTime DataInicio { get; set; }
 
         [Required]
+        [Display(Name = "Data de Fim")]
         public DateTime DataFim { get; set; }
 
         [Required]
         public bool Ativa { get; set; }
 
-        public virtual Produto Produto { get; set; }
+        [Display(Name = "Produto")]
+        public int IdProduto { get; set; }
 
+        [Display(Name = "Estabelecimento")]
+        public int IdEstabelecimento { get; set; }
+
+        public virtual Produto Produto { get; set; }
+        
         public virtual Estabelecimento Estabelecimento { get; set; }
     }
 }

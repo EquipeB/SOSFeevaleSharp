@@ -1,4 +1,23 @@
-﻿<ul class="nav navbar-nav navbar-right">
+﻿<div class="login pull-right">
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink(User.Identity.Name, "seila")
+        <a href="javascript:document.getElementById('logoff').submit()">Deslogar</a>
+
+        using (Html.BeginForm("LogOff", "Conta", FormMethod.Post, new { @class = "form-inline", id = "logoff" }))
+        {
+            @Html.AntiForgeryToken();
+        }
+    }
+    else
+    {
+        @Html.ActionLink("Registrar", "Registrar", "Conta")
+        @Html.ActionLink("Logar", "Login", "Conta")
+    }
+</div>
+
+
+@*<ul class="nav navbar-nav navbar-right">
     @if (Request.IsAuthenticated)
     {
         <li>
@@ -7,7 +26,7 @@
         <li>
             <a href="javascript:document.getElementById('logoff').submit()">Deslogar</a>
         </li>
-        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @class = "form-inline", id = "logoff" }))
+        using (Html.BeginForm("LogOff", "Conta", FormMethod.Post, new { @class = "form-inline", id = "logoff" }))
         {
             @Html.AntiForgeryToken();
         }
@@ -15,13 +34,13 @@
     else
     {
         <li>
-            @Html.ActionLink("Registrar", "Registrar", "Account")
+            @Html.ActionLink("Registrar", "Registrar", "Conta")
         </li>
         <li>
-            @Html.ActionLink("Logar", "Login", "Account")
+            @Html.ActionLink("Logar", "Login", "Conta")
         </li>
     }
-</ul>
+</ul>*@
 
 
 

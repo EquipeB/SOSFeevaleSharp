@@ -16,6 +16,10 @@ namespace Database.Models
         public Usuario()
             : base()
         {
+            EstabelecimentoVotos = new List<EstabelecimentoVoto>();
+            EstabelecimentoComentarios = new List<EstabelecimentoComentario>();
+            ProdutoComentarios = new List<ProdutoComentario>();
+            ProdutoVotos = new List<ProdutoVoto>();
             PreviousUserPasswords = new List<PreviousPassword>();
         }
 

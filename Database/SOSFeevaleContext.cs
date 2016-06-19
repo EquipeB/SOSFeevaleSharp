@@ -14,7 +14,7 @@ namespace Database
     public class SOSFeevaleContext : IdentityDbContext<Usuario>
     {
         public SOSFeevaleContext()
-            : base("DefaultConnection")
+            : base("NolletoConnection")
         {
         }
 
@@ -37,7 +37,10 @@ namespace Database
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            Relationships(modelBuilder);
+
             modelBuilder.Entity<Usuario>()
                 .ToTable("Usuario", "dbo").Property(p => p.UserName).HasColumnName("Usuario");
 
@@ -89,6 +92,69 @@ namespace Database
             //modelBuilder.Ignore<IdentityUserRole>();
             //modelBuilder.Ignore<IdentityRole>();
             //modelBuilder.Ignore<IdentityUserClaim>();
+        }
+
+        private void Relationships(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Produto>()
+                    .HasRequired<TipoProduto>(s => s.TipoProduto)
+                    .WithMany(s => s.Produtos)
+                    .HasForeignKey(s => s.IdTipoProduto);
+
+            modelBuilder.Entity<Produto>()
+                    .HasRequired<Estabelecimento>(s => s.Estabelecimento)
+                    .WithMany(s => s.Produtos)
+                    .HasForeignKey(s => s.IdEstabelecimento);
+
+            modelBuilder.Entity<EstabelecimentoComentario>()
+                    .HasRequired<Estabelecimento>(s => s.Estabelecimento)
+                    .WithMany(s => s.Comentarios)
+                    .HasForeignKey(s => s.IdEstabelecimento);
+
+            modelBuilder.Entity<EstabelecimentoComentario>()
+                    .HasRequired<Usuario>(s => s.Usuario)
+                    .WithMany(s => s.EstabelecimentoComentarios)
+                    .HasForeignKey(s => s.IdUsuario);
+
+            modelBuilder.Entity<EstabelecimentoVoto>()
+                    .HasRequired<Estabelecimento>(s => s.Estabelecimento)
+                    .WithMany(s => s.Votos)
+                    .HasForeignKey(s => s.IdEstabelecimento);
+
+            modelBuilder.Entity<EstabelecimentoVoto>()
+                    .HasRequired<Usuario>(s => s.Usuario)
+                    .WithMany(s => s.EstabelecimentoVotos)
+                    .HasForeignKey(s => s.IdUsuario);
+
+            modelBuilder.Entity<ProdutoComentario>()
+                    .HasRequired<Produto>(s => s.Produto)
+                    .WithMany(s => s.ProdutoComentarios)
+                    .HasForeignKey(s => s.IdProduto);
+
+            modelBuilder.Entity<ProdutoComentario>()
+                    .HasRequired<Usuario>(s => s.Usuario)
+                    .WithMany(s => s.ProdutoComentarios)
+                    .HasForeignKey(s => s.IdUsuario);
+
+            modelBuilder.Entity<ProdutoVoto>()
+                    .HasRequired<Produto>(s => s.Produto)
+                    .WithMany(s => s.ProdutoVotos)
+                    .HasForeignKey(s => s.IdProduto);
+
+            modelBuilder.Entity<ProdutoVoto>()
+                    .HasRequired<Usuario>(s => s.Usuario)
+                    .WithMany(s => s.ProdutoVotos)
+                    .HasForeignKey(s => s.IdUsuario);
+
+            modelBuilder.Entity<Promocao>()
+                    .HasRequired<Estabelecimento>(s => s.Estabelecimento)
+                    .WithMany(s => s.Promocoes)
+                    .HasForeignKey(s => s.IdEstabelecimento);
+
+            modelBuilder.Entity<Promocao>()
+                    .HasRequired<Produto>(s => s.Produto)
+                    .WithMany(s => s.Promocoes)
+                    .HasForeignKey(s => s.IdProduto);
         }
     }
 }

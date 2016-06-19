@@ -17,7 +17,7 @@ namespace Web.Controllers
             if (!string.IsNullOrEmpty(model.Pesquisa))
             {
                 model.Produtos= db.Produto
-                    .Where(p => p.Nome.Contains(model.Pesquisa) || p.Descricao.Contains(model.Pesquisa))
+                    .Where(p => p.Nome.Contains(model.Pesquisa) || p.Descricao.Contains(model.Pesquisa) || p.TipoProduto.Descricao.Contains(model.Pesquisa))
                     .ToArray();
             } else
             {
@@ -40,6 +40,54 @@ namespace Web.Controllers
             }
             ViewBag.TipoProduto = produto.TipoProduto.Descricao;
             return View(produto);
+        }
+
+        [Authorize]
+        public ActionResult Registrar()
+        {
+            ViewBag.IdEstabelecimento = new SelectList(db.Estabelecimento, "IdEstabelecimento", "Nome");
+            ViewBag.IdTipoProduto = new SelectList(db.TipoProduto, "IdTipoProduto", "Descricao");
+            return View();
+        }
+
+        // POST: EstabelecimentoTeste/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Registrar([Bind(Include = "IdProduto,Nome,Descricao,Preco,Foto,Ativo,IdTipoProduto,IdEstabelecimento")] Produto produto)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Produto.Add(produto);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.IdEstabelecimento = new SelectList(db.Estabelecimento, "IdEstabelecimento", "Nome");
+            ViewBag.IdTipoProduto = new SelectList(db.TipoProduto, "IdTipoProduto", "Descricao");
+            return View(produto);
+        }
+
+        // POST: Produtoes/Delete/5
+        [HttpPost, ActionName("Deletar")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Deletar(int? idProduto)
+        {
+            if (idProduto == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Produto produto = db.Produto.Find(idProduto);
+            if (produto == null)
+            {
+                return HttpNotFound();
+            }
+            db.Produto.Remove(produto);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

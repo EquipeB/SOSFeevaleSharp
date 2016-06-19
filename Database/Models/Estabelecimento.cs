@@ -19,9 +19,11 @@ namespace Database.Models
         public string Nome { get; set; }
 
         [StringLength(200)]
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         [StringLength(200)]
+        [Display(Name = "Localização")]
         public string Localizacao { get; set; }
 
         public string Foto { get; set; }
@@ -29,5 +31,9 @@ namespace Database.Models
         public virtual ICollection<Produto> Produtos { get; set; }
 
         public virtual ICollection<Promocao> Promocoes { get; set; }
+
+        public virtual ICollection<EstabelecimentoComentario> Comentarios { get; set; }
+
+        public virtual ICollection<EstabelecimentoVoto> Votos { get; set; }
     }
 }

@@ -5,22 +5,29 @@
     }
 </div>*@
 
+@{ 
+    //string actionName = ViewContext.Controller.ControllerContext.RouteData.Values["action"].ToString();
+    string controllerName = ViewContext.Controller.ControllerContext.RouteData.Values["controller"].ToString();
+}
+
 <header id="header">
     <div class="top-bar">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-xs-4">
-                    
+                <div class="col-sm-6 col-xs-4">   
                 </div>
                 <div class="col-sm-6 col-xs-8">
-                    <div class="social">
+                    @*<div class="social">
                         <div class="search">
                             <form role="form">
                                 <input type="text" class="search-form" autocomplete="off" placeholder="O que você procura?">
                                 <i class="fa fa-search"></i>
                             </form>
                         </div>
-                    </div>
+                    </div>*@
+                    @{ 
+                        Html.RenderPartial("~/Views/Shared/Login.cshtml");
+                    }
                 </div>
             </div>
         </div><!--/.container-->
@@ -39,26 +46,20 @@
 
             <div class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    @*<li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="services.html">Serviços</a></li>
-                    <li><a href="portfolio.html">Produtos</a></li>
-                    <li><a href="portfolio.html">Estabelecimentos</a></li>
-                    <li><a href="contact-us.html">Contato</a></li>*@
-
-                    <li>
+                    
+                    <li class="@(controllerName == "Home" ? "active" : "")">
                         @Html.ActionLink("Home", "Index", "Home")
                     </li>
-                    <li>
+                    <li class="@(controllerName == "Estabelecimento" ? "active" : "")">
                         @Html.ActionLink("Estabelecimentos", "Index", "Estabelecimento")
                     </li>
-                    <li>
+                    <li class="@(controllerName == "Produto" ? "active" : "")">
                         @Html.ActionLink("Produtos", "Index", "Produto")
                     </li>
-                    <li>
+                    <li class="@(controllerName == "Servico" ? "active" : "")">
                         @Html.ActionLink("Servicos", "Index", "Servico")
                     </li>
-                    <li>
+                    <li class="@(controllerName == "Contato" ? "active" : "")">
                         @Html.ActionLink("Contato", "Index", "Contato")
                     </li>
 

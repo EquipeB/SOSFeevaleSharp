@@ -1,0 +1,43 @@
+﻿@model Database.Models.Estabelecimento
+
+@{
+    ViewBag.Title = "Registrar";
+}
+
+
+<h2>Resgistrar Estabelecimento</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome)
+        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Nome)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descricao)
+        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Descricao)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Localizacao)
+        @Html.TextBoxFor(model => model.Localizacao, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Localizacao)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Foto)
+        @Html.TextBoxFor(model => model.Foto, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Foto)
+    </div>
+
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Resgistrar" />
+    </div>
+}

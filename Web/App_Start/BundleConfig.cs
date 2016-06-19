@@ -32,10 +32,15 @@ namespace Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/app/app.css",
-                "~/Content/app/site.css")
+            bundles.Add(new StyleBundle("~/Content/others")
                 .IncludeDirectory("~/Content/temp/", "*.css"));
+
+            bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
+                "~/Content/font-awesome*"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/app/site.css",
+                "~/Content/app/app.css"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                 "~/Content/bootstrap*")

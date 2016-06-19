@@ -17,8 +17,14 @@ namespace Database.Models
         [Required]
         public int Pontos { get; set; }
 
-        public virtual Estabelecimento Estabelecimento { get; set; }
+        [Display(Name = "Estabelecimento")]
+        public int IdEstabelecimento { get; set; }
 
+        [Display(Name = "Usuário")]
+        public string IdUsuario { get; set; }
+
+        public virtual Estabelecimento Estabelecimento { get; set; }
+        
         public virtual Usuario Usuario { get; set; }
     }
 }

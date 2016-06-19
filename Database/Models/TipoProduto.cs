@@ -16,6 +16,7 @@ namespace Database.Models
 
         [Required]
         [StringLength(200)]
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         public virtual ICollection<Produto> Produtos { get; set; }

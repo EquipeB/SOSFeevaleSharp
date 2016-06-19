@@ -6,13 +6,22 @@
 
 <h2>Produtos</h2>
 
-@using (Html.BeginForm("Index", "Produto", FormMethod.Post, new { @class = "form-inline" }))
-{
-    <div class="form-group">
-        @Html.LabelFor(model => model.Pesquisa)
-        @Html.TextBoxFor(model => model.Pesquisa, new { @class = "form-control" })
+<div class="panel panel-default">
+    <div class="panel-body">
+        @using (Html.BeginForm("Index", "Produto", FormMethod.Post, new { @class = "form-inline" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pesquisa)
+                @Html.TextBoxFor(model => model.Pesquisa, new { @class = "form-control" })
+            </div>
+            <a class="btn btn-default pull-right" href="@Url.Action("Registrar")">
+                Adicionar 
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        }
     </div>
-}
+
+</div>
 
 <div class="row">
     @for (int i = 0; i < Model.Produtos.Count(); i++)

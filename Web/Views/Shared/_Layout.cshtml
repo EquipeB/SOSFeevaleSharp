@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>SOS Feevale</title>
     @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/others")
+    @Styles.Render("~/Content/fontawesome")
     @Styles.Render("~/Content/css")
 
 </head>
@@ -13,9 +15,11 @@
         Html.RenderPartial("Header");
     }
 
-    <div class="container">
-        @RenderBody()
-    </div>
+    <main>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
     @*@{
         Html.RenderPartial("Footer");
     }*@

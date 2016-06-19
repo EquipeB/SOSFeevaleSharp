@@ -171,7 +171,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContaController.cs" />
     <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\EstabelecimentoTesteController.cs" />
@@ -184,6 +184,7 @@
     </Compile>
     <Compile Include="Models\Account\LoginViewModel.cs" />
     <Compile Include="Models\Account\RegistrarViewModel.cs" />
+    <Compile Include="Models\Estabelecimento\IndexModelView.cs" />
     <Compile Include="Models\Home\IndexModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Produto\IndexModelView.cs" />
@@ -192,13 +193,20 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\app\app.css">
+      <DependentUpon>app.less</DependentUpon>
+    </Content>
+    <Content Include="Content\app\app.min.css">
+      <DependentUpon>app.css</DependentUpon>
+    </Content>
     <Content Include="Content\app\site.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\temp\animate.min.css" />
-    <Content Include="Content\temp\font-awesome.css" />
     <Content Include="Content\temp\main.css" />
     <Content Include="Content\temp\prettyPhoto.css" />
     <Content Include="Content\temp\responsive.css" />
@@ -256,6 +264,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -286,8 +295,8 @@
     <Content Include="Imgs\slider\subway.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Views\Account\Registrar.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Conta\Registrar.cshtml" />
+    <Content Include="Views\Conta\Login.cshtml" />
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
@@ -310,6 +319,8 @@
     <Content Include="Views\Contato\Index.cshtml" />
     <Content Include="Views\Parceiro\Index.cshtml" />
     <Content Include="Views\Servico\Detalhe.cshtml" />
+    <Content Include="Views\Produto\Registrar.cshtml" />
+    <Content Include="Views\Estabelecimento\Registrar.cshtml" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Exemplo.ts" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Index.ts" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -319,6 +330,13 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\app\header.less" />
+    <Content Include="Content\app\footer.less" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />

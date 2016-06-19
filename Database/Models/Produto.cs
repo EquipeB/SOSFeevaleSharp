@@ -19,16 +19,24 @@ namespace Database.Models
         public string Nome { get; set; }
 
         [StringLength(200)]
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
         [DataType(DataType.Currency)]
         [Column(TypeName = "money")]
+        [Display(Name = "Preço")]
         public decimal Preco { get; set; }
 
         public string Foto { get; set; }
 
         [Required]
         public bool Ativo { get; set; }
+
+        [Display(Name = "Produto")]
+        public int IdTipoProduto { get; set; }
+
+        [Display(Name = "Estabelecimento")]
+        public int IdEstabelecimento { get; set; }
 
         public virtual TipoProduto TipoProduto { get; set; }
 

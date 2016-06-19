@@ -40,6 +40,19 @@
     </div>
 </div>
 
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    using (Html.BeginForm("Deletar", "Estabelecimento"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.IdEstabelecimento)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
+    }
+}
+
 @if (produtos != null && produtos.Count() > 0)
 {
     <h2>Produtos</h2>
