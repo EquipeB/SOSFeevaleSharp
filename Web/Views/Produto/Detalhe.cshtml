@@ -8,7 +8,8 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>@Model.Nome</h4>
+        <span>@Model.Nome</span>
+        @Html.ActionLink("Editar", "Editar", new { id = Model.IdProduto }, new { @class = "btn btn-default btn-xs pull-right" })
     </div>
     <div class="panel-body">
         <div class="row">

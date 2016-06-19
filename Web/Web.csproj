@@ -295,6 +295,7 @@
     <Content Include="Imgs\slider\subway.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\methods_pt.js" />
     <Content Include="Views\Conta\Registrar.cshtml" />
     <Content Include="Views\Conta\Login.cshtml" />
     <Content Include="Views\Shared\Menu.cshtml" />
@@ -321,6 +322,7 @@
     <Content Include="Views\Servico\Detalhe.cshtml" />
     <Content Include="Views\Produto\Registrar.cshtml" />
     <Content Include="Views\Estabelecimento\Registrar.cshtml" />
+    <Content Include="Views\Produto\Editar.cshtml" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Exemplo.ts" />
     <TypeScriptCompile Include="Scripts\Custom\Telas\Home\Index.ts" />
     <Compile Include="App_Start\Startup.Auth.cs" />

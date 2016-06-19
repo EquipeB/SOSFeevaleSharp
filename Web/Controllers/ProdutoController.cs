@@ -1,6 +1,7 @@
 ﻿using Database.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -67,6 +68,43 @@ namespace Web.Controllers
 
             ViewBag.IdEstabelecimento = new SelectList(db.Estabelecimento, "IdEstabelecimento", "Nome");
             ViewBag.IdTipoProduto = new SelectList(db.TipoProduto, "IdTipoProduto", "Descricao");
+            return View(produto);
+        }
+
+        [Authorize]
+        public ActionResult Editar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Produto produto = db.Produto.Find(id);
+            if (produto == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.IdEstabelecimento = new SelectList(db.Estabelecimento, "IdEstabelecimento", "Nome", produto.IdEstabelecimento);
+            ViewBag.IdTipoProduto = new SelectList(db.TipoProduto, "IdTipoProduto", "Descricao", produto.IdTipoProduto);
+            return View(produto);
+        }
+
+        // POST: EstabelecimentoTeste/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar([Bind(Include = "IdProduto,Nome,Descricao,Preco,Foto,Ativo,IdTipoProduto,IdEstabelecimento")] Produto produto)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(produto).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.IdEstabelecimento = new SelectList(db.Estabelecimento, "IdEstabelecimento", "Nome", produto.IdEstabelecimento);
+            ViewBag.IdTipoProduto = new SelectList(db.TipoProduto, "IdTipoProduto", "Descricao", produto.IdTipoProduto);
             return View(produto);
         }
 
